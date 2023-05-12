@@ -19,7 +19,6 @@
 
 - has_many :items
 - has_many :orders
-- has_many :addresses
 
 ## items テーブル
 
@@ -39,7 +38,6 @@
 
 - belongs_to :user
 - has_one    :order
-- has_one    :addresses
 
 ## orders テーブル
 
