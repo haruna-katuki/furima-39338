@@ -29,14 +29,17 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Email is invalid")
       end
       it 'emailが他のユーザーと重複していると登録できない' do
+        @user.save
+        another_user = FactoryBot.build(:user)
+        another_user.email = @user.email
+        another_user.valid?
+        expect(another_user.errors.full_messages).to include("Email has already been taken")
       end
       it 'passwordが空だと登録できない' do
       end
       it 'passwordとpassword_confirmationが不一致だと登録できない' do
       end
       it 'passwordが5文字以下だと登録できない' do
-      end
-      it 'passwordが129文字以上だと登録できない' do
       end
       it 'family_nameが空だと登録できない' do
       end
