@@ -42,6 +42,13 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password can't be blank")
       end
       it 'passwordとpassword_confirmationが不一致だと登録できない' do
+        @user.password_confirmation = 'M89pb4Rgf'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+      it 'passwordが英字だけだと登録できない' do
+      end
+      it 'passwordが数字だけだと登録できない' do
       end
       it 'passwordが5文字以下だと登録できない' do
       end
