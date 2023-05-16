@@ -6,8 +6,10 @@ class Item < ApplicationRecord
   validates :caption, presence: true, length: { maximum: 1000 }
   validates :category_id, numericality: { other_than: 1 }
   validates :state_id, numericality: { other_than: 1 }
+  validates :postage_id, numericality: { other_than: 1 }
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :state
+  belongs_to :postage
 end
