@@ -80,6 +80,9 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Family name can't be blank")
       end
       it 'first_nameが全角でないと登録できない' do
+        @user.family_name = 'aaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Family name is invalid")
       end
       it 'family_name_kanaが空だと登録できない' do
       end
