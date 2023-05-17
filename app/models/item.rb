@@ -10,7 +10,9 @@ class Item < ApplicationRecord
   validates :postage_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :shipping_day_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :price, presence: true, numericality: { greater_than: 299, less_than: 10_000_000 }, format: { with: /\A[0-9]+\z/ }
+  validates :price, presence: true
+  validates :price, numericality: {only_integer: true, message: 'Half-width number'}
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is out of setting range"}
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
