@@ -38,6 +38,9 @@ RSpec.describe Item, type: :model do
       end
 
       it 'captionが1001文字以上だと登録できない' do
+        @item.caption = Faker::Lorem.characters(number: 1001)
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Caption is too long (maximum is 1000 characters)")
       end
 
       it 'category_idが1だと登録できない' do
