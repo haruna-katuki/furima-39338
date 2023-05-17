@@ -44,6 +44,9 @@ RSpec.describe Item, type: :model do
       end
 
       it 'category_idが1だと登録できない' do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category can't be blank")
       end
 
       it 'state_idが1だと登録できない' do
