@@ -1,8 +1,8 @@
 window.addEventListener('load', function(){
 
-  const inputPrice = document.getElementById("item-price")
-  inputPrice.addEventListener("input",function(){
-    const addTaxPrice = inputPrice.value - 0.1
+  const price = document.getElementById("item-price")
+  price.addEventListener("input",function(){
+    const addTaxPrice = price.value * 0.1
     document.getElementById("add-tax-price").textContent = addTaxPrice;
   });
 })
