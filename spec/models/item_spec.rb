@@ -2,12 +2,13 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   before do
-    @user = FactoryBot.build(:item)
+    @item = FactoryBot.build(:item)
   end
 
   describe '商品新規登録' do
     context '新規登録できるとき' do
       it 'image、item_name、captionが存在しており、category_id、state_id、postage_id、prefecture_id、shipping_day_idが1以外を選択している、かつpriceが300~9999999の間の値だと登録できる' do
+        expect(@item).to be_valid
       end
     end
 
