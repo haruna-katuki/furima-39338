@@ -20,6 +20,9 @@ RSpec.describe Item, type: :model do
       end
 
       it 'item_nameが存在していないと登録できない' do
+        @item.item_name = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Item name can't be blank")
       end
 
       it 'item_nameが41文字以上だと登録できない' do
