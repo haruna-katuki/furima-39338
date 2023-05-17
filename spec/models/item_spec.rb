@@ -32,6 +32,9 @@ RSpec.describe Item, type: :model do
       end
 
       it 'captionが存在していないと登録できない' do
+        @item.caption = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Caption can't be blank")
       end
 
       it 'captionが1001文字以上だと登録できない' do
