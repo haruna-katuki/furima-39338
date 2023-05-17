@@ -68,6 +68,9 @@ RSpec.describe Item, type: :model do
       end
 
       it 'shipping_day_idが1だと登録できない' do
+        @item.shipping_day_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping day can't be blank")
       end
 
       it 'priceが存在しないと登録できない' do
