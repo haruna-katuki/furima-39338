@@ -26,6 +26,9 @@ RSpec.describe Item, type: :model do
       end
 
       it 'item_nameが41文字以上だと登録できない' do
+        @item.item_name = Faker::Lorem.characters(number: 41)
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Item name is too long (maximum is 40 characters)")
       end
 
       it 'captionが存在していないと登録できない' do
