@@ -2,6 +2,9 @@ class OrdersController < ApplicationController
   before_action :set_item
 
   def index
+    if @item.order.present?
+      redirect_to root_path
+    end
     @order_address = OrderAddress.new
   end
 
