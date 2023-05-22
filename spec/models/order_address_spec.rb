@@ -21,6 +21,9 @@ RSpec.describe OrderAddress, type: :model do
 
     context '商品の購入ができない場合' do
       it 'postal_codeが存在しないと購入できない' do
+        @order_address.postal_code = ''
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Postal code can't be blank")
       end
 
       it 'postal_codeの形式が正しくないと購入できない' do
