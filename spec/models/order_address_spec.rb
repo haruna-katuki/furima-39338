@@ -7,7 +7,7 @@ RSpec.describe OrderAddress, type: :model do
       @item = FactoryBot.create(:item)
       @order_address = FactoryBot.build(:order_address, user_id: @user.id, item_id: @item.id)
     end
-  
+
     context '商品の購入ができる場合' do
       it 'postal_code、prefecture_id、city、house_number、building、telephone_number、tokenが存在すれば購入できる' do
         expect(@order_address).to be_valid
@@ -29,7 +29,7 @@ RSpec.describe OrderAddress, type: :model do
       it 'postal_codeの形式が正しくないと購入できない' do
         @order_address.postal_code = '1234567'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@order_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
 
       it 'prefecture_idが1だと購入できない' do
@@ -59,7 +59,7 @@ RSpec.describe OrderAddress, type: :model do
       it 'telephone_numberが半角数字11桁でないと購入できない' do
         @order_address.telephone_number = 123456789
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Telephone number is invalid")
+        expect(@order_address.errors.full_messages).to include('Telephone number is invalid')
       end
 
       it 'tokenが存在しないと購入できない' do
