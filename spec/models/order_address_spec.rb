@@ -14,6 +14,8 @@ RSpec.describe OrderAddress, type: :model do
       end
 
       it 'buildingが存在しなくても購入できる' do
+        @order_address.building = ''
+        expect(@order_address).to be_valid
       end
     end
 
