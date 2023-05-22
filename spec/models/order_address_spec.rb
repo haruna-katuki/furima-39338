@@ -63,6 +63,9 @@ RSpec.describe OrderAddress, type: :model do
       end
 
       it 'tokenが存在しないと購入できない' do
+        @order_address.token = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Token can't be blank")
       end
 
       it 'userと紐づいていないと購入できない' do
