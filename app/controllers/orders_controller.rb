@@ -3,10 +3,7 @@ class OrdersController < ApplicationController
   before_action :set_item
 
   def index
-    if @item.order.present?
-      redirect_to root_path
-    end
-    if @item.user.id == current_user.id
+    if @item.order.present? || @item.user.id == current_user.id
       redirect_to root_path
     end
     @order_address = OrderAddress.new
