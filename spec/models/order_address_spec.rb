@@ -45,6 +45,9 @@ RSpec.describe OrderAddress, type: :model do
       end
 
       it 'house_numberが存在しないと購入できない' do
+        @order_address.house_number = ''
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("House number can't be blank")
       end
 
       it 'telephone_numberが存在しないと購入できない' do
