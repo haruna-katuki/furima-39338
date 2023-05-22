@@ -39,6 +39,9 @@ RSpec.describe OrderAddress, type: :model do
       end
 
       it 'cityが存在しないと購入できない' do
+        @order_address.city = ''
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("City can't be blank")
       end
 
       it 'house_numberが存在しないと購入できない' do
