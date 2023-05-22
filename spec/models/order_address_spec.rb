@@ -75,6 +75,9 @@ RSpec.describe OrderAddress, type: :model do
       end
 
       it 'itemと紐づいていないと購入できない' do
+        @order_address.item_id = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
