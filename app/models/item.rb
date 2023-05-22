@@ -3,15 +3,17 @@ class Item < ApplicationRecord
   has_one_attached :image
   has_one :order
 
-  validates :image, presence: true
-  validates :item_name, presence: true, length: { maximum: 40 }
-  validates :caption, presence: true, length: { maximum: 1000 }
+  with_options presence: true do
+    validates :image
+    validates :item_name, length: { maximum: 40 }
+    validates :caption, length: { maximum: 1000 }
+    validates :price, presence: true
+  end
   validates :category_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :state_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :postage_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :shipping_day_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :price, presence: true
   validates :price, numericality: { only_integer: true, message: 'is not half-width number' }
   validates :price,
             numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'is out of setting range' }
