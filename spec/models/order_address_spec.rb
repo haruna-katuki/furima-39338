@@ -62,6 +62,18 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include('Telephone number is invalid')
       end
 
+      it 'telephone_numberが半角数字12桁以上だと購入できない' do
+        @order_address.telephone_number = 123456789012
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Telephone number is invalid')
+      end
+
+      it 'telephone_numberが半角数字でないと購入できない' do
+        @order_address.telephone_number = '１２３４５６７８９０'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Telephone number is invalid')
+      end
+
       it 'tokenが存在しないと購入できない' do
         @order_address.token = nil
         @order_address.valid?
