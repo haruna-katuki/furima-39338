@@ -9,14 +9,14 @@ class Item < ApplicationRecord
     validates :caption, length: { maximum: 1000 }
     validates :price, presence: true
   end
-  validates :category_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :state_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :postage_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :shipping_day_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :price, numericality: { only_integer: true, message: 'is not half-width number' }
+  validates :category_id, numericality: { other_than: 1, message: "を選択してください" }
+  validates :state_id, numericality: { other_than: 1, message: "を選択してください" }
+  validates :postage_id, numericality: { other_than: 1, message: "を選択してください" }
+  validates :prefecture_id, numericality: { other_than: 1, message: "を選択してください" }
+  validates :shipping_day_id, numericality: { other_than: 1, message: "を選択してください" }
+  validates :price, numericality: { only_integer: true, message: 'は半角数字にしてください' }
   validates :price,
-            numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'is out of setting range' }
+            numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'は有効な範囲に設定してください' }
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
