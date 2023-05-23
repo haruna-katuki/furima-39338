@@ -16,91 +16,91 @@ RSpec.describe Item, type: :model do
       it 'imageが存在していないと登録できない' do
         @item.image = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("Image can't be blank")
+        expect(@item.errors.full_messages).to include("商品画像を入力してください")
       end
 
       it 'item_nameが存在していないと登録できない' do
         @item.item_name = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Item name can't be blank")
+        expect(@item.errors.full_messages).to include("商品名を入力してください")
       end
 
       it 'item_nameが41文字以上だと登録できない' do
         @item.item_name = Faker::Lorem.characters(number: 41)
         @item.valid?
-        expect(@item.errors.full_messages).to include('Item name is too long (maximum is 40 characters)')
+        expect(@item.errors.full_messages).to include("商品名は40文字以内で入力してください")
       end
 
       it 'captionが存在していないと登録できない' do
         @item.caption = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Caption can't be blank")
+        expect(@item.errors.full_messages).to include("商品の説明を入力してください")
       end
 
       it 'captionが1001文字以上だと登録できない' do
         @item.caption = Faker::Lorem.characters(number: 1001)
         @item.valid?
-        expect(@item.errors.full_messages).to include('Caption is too long (maximum is 1000 characters)')
+        expect(@item.errors.full_messages).to include("商品の説明は1000文字以内で入力してください")
       end
 
       it 'category_idが1だと登録できない' do
         @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category can't be blank")
+        expect(@item.errors.full_messages).to include("カテゴリーを選択してください")
       end
 
       it 'state_idが1だと登録できない' do
         @item.state_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("State can't be blank")
+        expect(@item.errors.full_messages).to include("商品の状態を選択してください")
       end
 
       it 'postage_idが1だと登録できない' do
         @item.postage_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Postage can't be blank")
+        expect(@item.errors.full_messages).to include("配送料の負担を選択してください")
       end
 
       it 'prefecture_idが1だと登録できない' do
         @item.prefecture_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+        expect(@item.errors.full_messages).to include("発送元の地域を選択してください")
       end
 
       it 'shipping_day_idが1だと登録できない' do
         @item.shipping_day_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping day can't be blank")
+        expect(@item.errors.full_messages).to include("発送までの日数を選択してください")
       end
 
       it 'priceが存在しないと登録できない' do
         @item.price = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price can't be blank")
+        expect(@item.errors.full_messages).to include("販売価格を入力してください")
       end
 
       it 'priceが299以下だと登録できない' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is out of setting range')
+        expect(@item.errors.full_messages).to include("販売価格は有効な範囲に設定してください")
       end
 
       it 'priceが10000000以上だと登録できない' do
         @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is out of setting range')
+        expect(@item.errors.full_messages).to include("販売価格は有効な範囲に設定してください")
       end
 
       it 'priceが半角数字整数でないと登録できない' do
         @item.price = 345.6
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is not half-width number')
+        expect(@item.errors.full_messages).to include("販売価格は半角数字にしてください")
       end
 
       it 'userに紐づいていないと登録できない' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include('User must exist')
+        expect(@item.errors.full_messages).to include("Userを入力してください")
       end
     end
   end
